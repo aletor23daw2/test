@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series de Figuras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ejercicio 2</h1> 
+        <div class="series-container">
+            <div class="series" id="series1"><img src="imagenes/pixil-frame-4.png"></div>
+            <div class="series" id="series2"><img src="imagenes/pixil-frame-6.png"></div>
+            <div class="series" id="series3"><img src="imagenes/pixil-frame-5.png"></div>
+            <div class="series" id="series4"><img src="imagenes/pixil-frame-7.png"></div>
+            <div class="drop-box" id="dropBox"></div>
+        </div>
+        <div class="figures-container">
+            <div class="figure" id="figure4" draggable="true"><img src="imagenes/pixil-frame-8.png"></div>
+            <div class="figure" id="figure2" draggable="true"><img src="imagenes/pixil-frame-7.png"></div>
+            <div class="figure" id="figure3" draggable="true"><img src="imagenes/pixil-frame-6.png"></div>
+            <div class="figure" id="figure1" draggable="true"><img src="imagenes/pixil-frame-4.png"></div>  
+        </div>
+        <button id="checkButton">Següent</button>
+    </div>
+    <script src="script.js"></script>
+    <input type="hidden" id="serieId" value="patron2">
+    <script>
+        document.getElementById('checkButton').addEventListener('click', function() {
+            const currentScore = localStorage.getItem('score') || '0';
+            localStorage.setItem('previousScore', currentScore);
+
+            window.location.href = "patron3.html";
+        });
+    </script>    
+</body>
+</html>

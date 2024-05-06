@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series de Figuras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ejercicio 4</h1> 
+        <div class="series-container">
+            <div class="series" id="series1"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-1.png"></div>
+            <div class="series" id="series2"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-2.png"></div>
+            <div class="series" id="series3"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-3.png"></div>
+            <div class="drop-box" id="dropBox"></div>
+        </div>
+        <div class="figures-container">
+            <div class="figure" id="figure4" draggable="true"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-4.png"></div>
+            <div class="figure" id="figure2" draggable="true"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-5.png"></div>
+            <div class="figure" id="figure3" draggable="true"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-6.png"></div>
+            <div class="figure" id="figure1" draggable="true"><img style="width: 120px; margin-bottom: 30px;" src="imagenes/patron3-7.png"></div>            
+        </div>
+        <form id="guardar">
+            <input type="hidden" id="tiempo_transcurrido" name="tiempo_transcurrido"> 
+            <button id="checkButton" type="submit">Següent</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('guardar');
+            const start = localStorage.getItem('start_time'); 
+    
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                const finish = Date.now(); 
+                const elapsed_time = (finish - start) / 1000; 
+    
+                const currentScore = localStorage.getItem('score') || '0';
+                localStorage.setItem('previousScore', currentScore);
+    
+                const username = localStorage.getItem('username') || 'Usuario'; // Obtener el nombre de usuario
+                window.location.href = `resultados.html?username=${encodeURIComponent(username)}&tiempo=${Math.floor(elapsed_time)}`;
+            });
+        });
+    </script>    
+    <script src="script.js"></script>
+    <input type="hidden" id="serieId" value="patron4">
+    <script src="tiempo.js" type="module"></script>
+</body>
+</html>

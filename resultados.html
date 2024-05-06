@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado del Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="icon-container">
+            <span><i class="fas fa-user"></i></span>
+            <span><i class="fas fa-clock"></i></span>
+            <span><i class="fas fa-trophy"></i></span>
+        </div>
+        <h2>Resultado del Test</h2>
+        <p class="fas fa-user"> Usuari: <span id="username" class="username"></span></p>
+        <p><span class="fas fa-clock"></span> Temps: <span id="tiempo" class="tiempo"></span></p>
+        <p><span class="fas fa-trophy"></span> Puntuació: <span id="puntuacion" class="puntuacion"></span></p>
+        <a href="index.html" class="btn">Volver al inicio</a>
+    </div>
+  
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username') || 'Usuario';
+            const tiempo_transcurrido = urlParams.get('tiempo');    
+            const puntuacion = localStorage.getItem('score'); // Obtener la puntuación
+
+            document.getElementById('username').textContent = username || 'Usuario';
+            document.getElementById('tiempo').textContent = tiempo_transcurrido === null ? 'No disponible' : Math.floor(tiempo_transcurrido) + ' segons';
+            document.getElementById('puntuacion').textContent = puntuacion || 'No disponible'; 
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push({ username, score: puntuacion, tiempo_transcurrido });
+            localStorage.setItem("users", JSON.stringify(users));
+        });
+    </script>
+</body>
+</html>

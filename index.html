@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a la Aplicación de Series de Figuras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-puzzle-piece"></i> Test psico-técnic <i class="fas fa-puzzle-piece"></i></h1>
+        <form id="userForm">
+            <label for="username"><i class="fas fa-user"></i> Nom d'usuari:</label>
+            <input type="text" id="username" name="username" required>
+            <button type="submit" id="startButton"><i class="fas fa-play"></i> Començar el test</button>
+        </form>
+        <hr>
+        <h2><i class="fas fa-list"></i> Tabla de Usuarios</h2>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-user"></i> Nombre de Usuario</th>
+                    <th><i class="fas fa-clock"></i> Tiempo</th>
+                    <th><i class="fas fa-trophy"></i> Puntuación</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="usuario.js"></script>
+    <script type="module" src="main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const userTable = document.getElementById("userTable");
+            const tbody = userTable.getElementsByTagName("tbody")[0];
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            users.forEach(user => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${user.username}</td>
+                    <td>${user.tiempo_transcurrido} segundos</td>
+                    <td>${user.score}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
